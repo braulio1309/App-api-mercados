@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreMercadoRequest extends FormRequest
+class StoreMercadoRequest extends ApiFormRequest
 {
     public function authorize(): bool
     {

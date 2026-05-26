@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreRepartidorRequest extends FormRequest
+class StoreRepartidorRequest extends ApiFormRequest
 {
     public function authorize(): bool
     {

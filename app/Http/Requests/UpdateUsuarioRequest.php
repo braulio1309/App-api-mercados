@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateUsuarioRequest extends FormRequest
+class UpdateUsuarioRequest extends ApiFormRequest
 {
     public function authorize(): bool
     {

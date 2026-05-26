@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class AsignarMercadoRequest extends FormRequest
+class AsignarMercadoRequest extends ApiFormRequest
 {
     public function authorize(): bool
     {

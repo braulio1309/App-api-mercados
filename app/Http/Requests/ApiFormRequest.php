@@ -62,6 +62,36 @@ abstract class ApiFormRequest extends FormRequest
             'horario_atencion.*.cierre' => 'hora de cierre',
             'nombre_dueno' => 'nombre del dueno',
             'ruc' => 'ruc',
+            // Categorias
+            'nombre' => 'nombre',
+            'descripcion' => 'descripcion',
+            'img' => 'imagen',
+            // Estado pedido
+            'color' => 'color',
+            'orden' => 'orden',
+            // Productos
+            'categoria_id' => 'categoria',
+            'mercado_id' => 'mercado',
+            'precio' => 'precio',
+            'stock' => 'stock',
+            'img_producto' => 'imagen del producto',
+            'activo' => 'activo',
+            // Pedidos
+            'usuario_id' => 'usuario',
+            'repartidor_id' => 'repartidor',
+            'estado_pedido_id' => 'estado del pedido',
+            'direccion_entrega' => 'direccion de entrega',
+            'referencia' => 'referencia',
+            'latitud' => 'latitud',
+            'longitud' => 'longitud',
+            'notas' => 'notas',
+            'subtotal' => 'subtotal',
+            'descuento' => 'descuento',
+            'costo_envio' => 'costo de envio',
+            'total' => 'total',
+            'items' => 'items del pedido',
+            'items.*.producto_id' => 'producto del item',
+            'items.*.cantidad' => 'cantidad del item',
         ];
     }
 

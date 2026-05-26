@@ -1,7 +1,11 @@
 <?php
 
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\CategoriaController;
+use App\Http\Controllers\Api\EstadoPedidoController;
 use App\Http\Controllers\Api\MercadoController;
+use App\Http\Controllers\Api\PedidoController;
+use App\Http\Controllers\Api\ProductoController;
 use App\Http\Controllers\Api\RepartidorController;
 use App\Http\Controllers\Api\UsuarioController;
 use App\Http\Controllers\Api\VendedorController;
@@ -40,3 +44,16 @@ Route::delete('/vendedores/{vendedor}/mercados/{mercado}', [VendedorController::
 
 // Mercados CRUD
 Route::apiResource('mercados', MercadoController::class);
+
+// Categorias CRUD
+Route::apiResource('categorias', CategoriaController::class);
+
+// Estados de pedido CRUD
+Route::apiResource('estado-pedidos', EstadoPedidoController::class);
+
+// Productos CRUD
+Route::apiResource('productos', ProductoController::class);
+
+// Pedidos CRUD + actualizar estado
+Route::apiResource('pedidos', PedidoController::class);
+Route::patch('/pedidos/{pedido}/estado', [PedidoController::class, 'actualizarEstado']);

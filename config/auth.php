@@ -1,6 +1,8 @@
 <?php
 
+use App\Models\Repartidor;
 use App\Models\User;
+use App\Models\Vendedor;
 
 return [
 
@@ -42,6 +44,18 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'api' => [
+            'driver' => 'sanctum',
+            'provider' => 'users',
+        ],
+        'repartidores' => [
+            'driver' => 'sanctum',
+            'provider' => 'repartidores',
+        ],
+        'vendedores' => [
+            'driver' => 'sanctum',
+            'provider' => 'vendedores',
+        ],
     ],
 
     /*
@@ -66,11 +80,14 @@ return [
             'driver' => 'eloquent',
             'model' => env('AUTH_MODEL', User::class),
         ],
-
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+        'repartidores' => [
+            'driver' => 'eloquent',
+            'model' => Repartidor::class,
+        ],
+        'vendedores' => [
+            'driver' => 'eloquent',
+            'model' => Vendedor::class,
+        ],
     ],
 
     /*

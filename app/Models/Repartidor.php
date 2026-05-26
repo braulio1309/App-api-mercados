@@ -4,38 +4,33 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class User extends Authenticatable
+class Repartidor extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory;
+
+    protected $table = 'repartidores';
 
     protected $fillable = [
         'nombres',
         'apellidos',
         'ciudad',
-        'distrito',
-        'direccion',
-        'latitud',
-        'longitud',
+        'dni_carnet',
         'celular',
         'email',
+        'placa_vehiculo',
         'password',
     ];
 
     protected $hidden = [
         'password',
-        'remember_token',
     ];
 
     protected function casts(): array
     {
         return [
-            'email_verified_at' => 'datetime',
             'password' => 'hashed',
-            'latitud' => 'decimal:7',
-            'longitud' => 'decimal:7',
         ];
     }
 }

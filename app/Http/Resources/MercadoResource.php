@@ -17,6 +17,8 @@ class MercadoResource extends JsonResource
             'horario_atencion'       => $this->horario_atencion,
             'nombre_dueno'           => $this->nombre_dueno,
             'ruc'                    => $this->ruc,
+            'latitud'                => $this->latitud,
+            'longitud'               => $this->longitud,
             'vendedores'             => VendedorResource::collection($this->whenLoaded('vendedores')),
             'creado_en'              => $this->created_at,
         ];

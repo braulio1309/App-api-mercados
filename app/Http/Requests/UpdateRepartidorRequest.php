@@ -24,6 +24,9 @@ class UpdateRepartidorRequest extends ApiFormRequest
             'email'          => ['sometimes', 'email', "unique:repartidores,email,{$id}"],
             'placa_vehiculo' => ['nullable', 'string', 'max:20'],
             'password'       => ['sometimes', 'string', 'min:8', 'confirmed'],
+            'disponible'     => ['sometimes', 'boolean'],
+            'latitud'        => ['nullable', 'numeric', 'between:-90,90'],
+            'longitud'       => ['nullable', 'numeric', 'between:-180,180'],
         ];
     }
 }

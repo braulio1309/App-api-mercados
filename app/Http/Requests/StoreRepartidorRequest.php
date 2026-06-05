@@ -22,6 +22,8 @@ class StoreRepartidorRequest extends ApiFormRequest
             'email'          => ['required', 'email', 'unique:repartidores,email'],
             'placa_vehiculo' => ['nullable', 'string', 'max:20'],
             'password'       => ['required', 'string', 'min:8', 'confirmed'],
+            'latitud'        => ['nullable', 'numeric', 'between:-90,90'],
+            'longitud'       => ['nullable', 'numeric', 'between:-180,180'],
         ];
     }
 }

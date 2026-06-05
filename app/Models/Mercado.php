@@ -19,12 +19,16 @@ class Mercado extends Model
         'horario_atencion',
         'nombre_dueno',
         'ruc',
+        'latitud',
+        'longitud',
     ];
 
     protected function casts(): array
     {
         return [
             'horario_atencion' => 'array',
+            'latitud'          => 'decimal:7',
+            'longitud'         => 'decimal:7',
         ];
     }
 

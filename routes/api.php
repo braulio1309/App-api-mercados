@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\MercadoController;
 use App\Http\Controllers\Api\PedidoController;
 use App\Http\Controllers\Api\ProductoController;
 use App\Http\Controllers\Api\RepartidorController;
+use App\Http\Controllers\Api\ResenaRepartidorController;
 use App\Http\Controllers\Api\UsuarioController;
 use App\Http\Controllers\Api\VendedorController;
 use Illuminate\Support\Facades\Route;
@@ -54,6 +55,10 @@ Route::apiResource('estado-pedidos', EstadoPedidoController::class);
 // Productos CRUD
 Route::apiResource('productos', ProductoController::class);
 
-// Pedidos CRUD + actualizar estado
+// Pedidos CRUD + actualizar estado + entregar
 Route::apiResource('pedidos', PedidoController::class);
 Route::patch('/pedidos/{pedido}/estado', [PedidoController::class, 'actualizarEstado']);
+Route::patch('/pedidos/{pedido}/entregar', [PedidoController::class, 'entregar']);
+
+// Reseñas de repartidores
+Route::apiResource('resenas-repartidores', ResenaRepartidorController::class)->except(['update']);

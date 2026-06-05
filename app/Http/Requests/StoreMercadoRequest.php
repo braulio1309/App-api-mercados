@@ -23,6 +23,8 @@ class StoreMercadoRequest extends ApiFormRequest
             'horario_atencion.*.cierre'  => ['required_with:horario_atencion', 'string'],
             'nombre_dueno'               => ['required', 'string', 'max:200'],
             'ruc'                        => ['nullable', 'string', 'max:11'],
+            'latitud'                    => ['nullable', 'numeric', 'between:-90,90'],
+            'longitud'                   => ['nullable', 'numeric', 'between:-180,180'],
         ];
     }
 }

@@ -92,6 +92,9 @@ abstract class ApiFormRequest extends FormRequest
             'items' => 'items del pedido',
             'items.*.producto_id' => 'producto del item',
             'items.*.cantidad' => 'cantidad del item',
+            // Reseñas repartidor
+            'calificacion' => 'calificacion',
+            'comentario' => 'comentario',
         ];
     }
 

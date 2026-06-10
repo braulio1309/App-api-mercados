@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\MercadoController;
 use App\Http\Controllers\Api\PedidoController;
 use App\Http\Controllers\Api\ProductoController;
 use App\Http\Controllers\Api\RepartidorController;
+use App\Http\Controllers\Api\ResenaRepartidorController;
 use App\Http\Controllers\Api\UsuarioController;
 use App\Http\Controllers\Api\VendedorController;
 use Illuminate\Support\Facades\Route;
@@ -36,6 +37,10 @@ Route::apiResource('usuarios', UsuarioController::class);
 
 // Repartidores CRUD
 Route::apiResource('repartidores', RepartidorController::class);
+Route::get('/repartidores/{repartidor}/resenas', [ResenaRepartidorController::class, 'porRepartidor']);
+
+// Reseñas de repartidores CRUD
+Route::apiResource('resenas-repartidor', ResenaRepartidorController::class);
 
 // Vendedores CRUD + asignacion de mercados
 Route::apiResource('vendedores', VendedorController::class);

@@ -95,6 +95,12 @@ abstract class ApiFormRequest extends FormRequest
             // Reseñas repartidor
             'calificacion' => 'calificacion',
             'comentario' => 'comentario',
+            // Pagos
+            'pedido_id' => 'pedido',
+            'monto' => 'monto',
+            'metodo_pago' => 'metodo de pago',
+            'estado' => 'estado',
+            'referencia_pago' => 'referencia del pago',
         ];
     }
 

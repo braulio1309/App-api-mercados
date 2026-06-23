@@ -70,4 +70,9 @@ class Pedido extends Model
     {
         return $this->hasMany(HistorialEstadoPedido::class, 'pedido_id');
     }
+
+    public function pagos(): HasMany
+    {
+        return $this->hasMany(Pago::class, 'pedido_id');
+    }
 }

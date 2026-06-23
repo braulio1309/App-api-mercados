@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\CategoriaController;
 use App\Http\Controllers\Api\EstadoPedidoController;
 use App\Http\Controllers\Api\MercadoController;
+use App\Http\Controllers\Api\PagoController;
 use App\Http\Controllers\Api\PedidoController;
 use App\Http\Controllers\Api\ProductoController;
 use App\Http\Controllers\Api\RepartidorController;
@@ -62,3 +63,7 @@ Route::apiResource('productos', ProductoController::class);
 // Pedidos CRUD + actualizar estado
 Route::apiResource('pedidos', PedidoController::class);
 Route::patch('/pedidos/{pedido}/estado', [PedidoController::class, 'actualizarEstado']);
+
+// Pagos CRUD + pagos por pedido
+Route::apiResource('pagos', PagoController::class);
+Route::get('/pedidos/{pedido}/pagos', [PagoController::class, 'porPedido']);

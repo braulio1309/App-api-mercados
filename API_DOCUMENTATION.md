@@ -19,8 +19,9 @@ Formato de respuesta: **JSON**
 8. [Estados de Pedido](#estados-de-pedido-apiestado-pedidos)
 9. [Productos](#productos-apiproductos)
 10. [Pedidos](#pedidos-apipedidos)
-11. [Errores Comunes](#errores-comunes)
-12. [Configuración del Entorno](#configuración-del-entorno)
+11. [Pagos](#pagos-apipagos)
+12. [Errores Comunes](#errores-comunes)
+13. [Configuración del Entorno](#configuración-del-entorno)
 
 ---
 
@@ -1018,6 +1019,142 @@ Actualiza el estado de un pedido y registra la transición en el historial de es
 {
   "message": "Estado del pedido actualizado exitosamente.",
   "data": { ... }
+}
+```
+
+---
+
+## Pagos (`/api/pagos`)
+
+### `GET /api/pagos`
+
+Lista todos los pagos con historial (paginado, 15 por página, del más reciente al más antiguo).
+
+**Respuesta exitosa (200)**
+```json
+{
+  "data": [
+    {
+      "id": 1,
+      "pedido": { "id": 3, "total": 18.50, ... },
+      "monto": 18.50,
+      "metodo_pago": "yape",
+      "estado": "completado",
+      "referencia_pago": "TXN-0001",
+      "notas": null,
+      "historial_pagos": [
+        {
+          "id": 1,
+          "estado": "completado",
+          "notas": "Pago registrado.",
+          "registrado_en": "2026-06-23T10:00:00.000000Z"
+        }
+      ],
+      "creado_en": "2026-06-23T10:00:00.000000Z",
+      "actualizado_en": "2026-06-23T10:00:00.000000Z"
+    }
+  ],
+  "links": { ... },
+  "meta": { ... }
+}
+```
+
+---
+
+### `POST /api/pagos`
+
+Registra un nuevo pago. Si se proporciona `estado_pedido_id`, actualiza también el estado del pedido y genera un registro en su historial de estados.
+
+**Request Body**
+
+| Campo              | Tipo    | Requerido | Descripción                                                                                      |
+|--------------------|---------|-----------|--------------------------------------------------------------------------------------------------|
+| `pedido_id`        | integer | ✅        | ID del pedido al que pertenece el pago                                                           |
+| `monto`            | decimal | ✅        | Monto del pago (mín. 0)                                                                          |
+| `metodo_pago`      | string  | ✅        | Método de pago: `efectivo`, `tarjeta_credito`, `tarjeta_debito`, `transferencia`, `yape`, `plin`, `otro` |
+| `estado`           | string  | ❌        | Estado del pago: `pendiente`, `completado`, `fallido`, `reembolsado` (por defecto `pendiente`)   |
+| `referencia_pago`  | string  | ❌        | Código o referencia de la transacción (máx. 200)                                                 |
+| `notas`            | string  | ❌        | Notas adicionales                                                                                |
+| `estado_pedido_id` | integer | ❌        | Si se envía, cambia el estado del pedido y registra la transición en su historial                |
+
+**Ejemplo de Request**
+```json
+{
+  "pedido_id": 3,
+  "monto": 18.50,
+  "metodo_pago": "yape",
+  "estado": "completado",
+  "referencia_pago": "TXN-0001",
+  "estado_pedido_id": 3
+}
+```
+
+**Respuesta exitosa (201)**
+```json
+{
+  "message": "Pago registrado exitosamente.",
+  "data": { ... }
+}
+```
+
+---
+
+### `GET /api/pagos/{id}`
+
+Obtiene un pago con su historial y el pedido asociado.
+
+---
+
+### `PUT /api/pagos/{id}`
+
+Actualiza un pago. Si cambia el `estado`, se registra automáticamente en el historial. Si se envía `estado_pedido_id`, también actualiza el estado del pedido.
+
+**Request Body** — Igual que `POST`, todos los campos opcionales (excepto `pedido_id` que no se puede cambiar).
+
+**Respuesta exitosa (200)**
+```json
+{
+  "message": "Pago actualizado exitosamente.",
+  "data": { ... }
+}
+```
+
+---
+
+### `DELETE /api/pagos/{id}`
+
+Elimina un pago y su historial (en cascada).
+
+**Respuesta exitosa (200)**
+```json
+{
+  "message": "Pago eliminado exitosamente."
+}
+```
+
+---
+
+### `GET /api/pedidos/{id}/pagos`
+
+Lista todos los pagos de un pedido específico (paginado, 15 por página).
+
+**Respuesta exitosa (200)**
+```json
+{
+  "data": [
+    {
+      "id": 1,
+      "monto": 18.50,
+      "metodo_pago": "yape",
+      "estado": "completado",
+      "referencia_pago": "TXN-0001",
+      "historial_pagos": [ ... ],
+      "creado_en": "2026-06-23T10:00:00.000000Z",
+      "actualizado_en": "2026-06-23T10:00:00.000000Z"
+    }
+  ],
+  "links": { ... },
+  "meta": { ... }
 }
 ```
 
